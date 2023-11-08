@@ -11,20 +11,32 @@ defmodule PatternMatching.Maps do
   Fix or complete the code to make the tests pass.
   """
 
-  def return_name(_value) do
-
+  def return_name(%{name: name}) do
+    name
   end
 
-  def has_sides?(_value) do
+  def has_sides?(%{sides: _num}), do: true
+  def has_sides?(_value), do: false
 
+  def net_change(%{initial_balance: initial, ending_balance: ending}) do
+    {:ok, ending - initial}
   end
 
   def net_change(_value) do
-
+    {:error, "Missing balance information"}
   end
 
-  def classify_response(_response) do
-
+  def classify_response(%{"success" => true, "token" => token} = _response) do
+    {:ok, token}
+  end
+  def classify_response(%{"success" => false, "messages" => %{"general" => %{"result_code" => -1}}} = _response) do
+    {:error, :invalid}
+  end
+  def classify_response(%{"success" => false, "messages" => %{"general" => %{"result_code" => 3}}} = _response) do
+    {:error, :retry}
+  end
+  def classify_response(%{"success" => false, "account" => %{"status_code" => "3001"}} = _response) do
+    {:error, :frozen}
   end
 
 end

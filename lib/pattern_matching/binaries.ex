@@ -11,16 +11,27 @@ defmodule PatternMatching.Binaries do
   Fix or complete the code to make the tests pass.
   """
 
-  def identify_command(_value) do
+  def identify_command("SAY " <> text), do: {:say, text}
+  def identify_command("WAVE " <> username), do: {:wave, username}
+  def identify_command(_other), do: {:error, "Unrecognized command"}
 
+  def format_phone(<<area::binary-size(3), three::binary-size(3), four::binary-size(4)>>) do
+    "(#{area}) #{three}-#{four}"
   end
 
-  def format_phone(_value) do
-
+  def format_phone(<<three::binary-size(3), four::binary-size(4)>>) do
+    "#{three}-#{four}"
   end
 
-  def image_type(_value) do
+  def format_phone(other), do: other
 
-  end
+  # Define image header data for PNG and JPG types.
+  @png_signature <<137::size(8), 80::size(8), 78::size(8), 71::size(8), 13::size(8), 10::size(8),
+                   26::size(8), 10::size(8)>>
 
+  @jpg_signature <<255::size(8), 216::size(8)>>
+
+  def image_type(<<@png_signature, _rest::binary>>), do: :png
+  def image_type(<<@jpg_signature, _rest::binary>>), do: :jpg
+  def image_type(_other), do: :unknown
 end
