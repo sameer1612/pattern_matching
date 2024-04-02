@@ -1,4 +1,6 @@
-# Pattern Matching
+# Pattern Matching - Solved
+
+> There is a separate `raw` branch without solutions.
 
 ## Notice
 
@@ -33,21 +35,4 @@ Add a code line number while focusing on a specific test. `:10`
 
 ```
 mix test test/maps_test.exs:10
-```
-
-## Solutions
-
-There is a separate `solutions` branch with examples of how the code can be implemented. **Don't peak!** Work out your own solutions before looking at other ways to solve it. You learn best by doing.
-
-In order to see the solutions, you should commit your code on the `main` branch.
-
-```
-git add .
-git commit -m "my pattern matching solutions"
-```
-
-Then you can checkout the solutions branch.
-
-```
-git checkout solutions
 ```
