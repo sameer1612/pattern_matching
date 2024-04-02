@@ -106,8 +106,11 @@ defmodule PatternMatching.GuardClausesTest do
     end
 
     test "returns error when age is negative" do
-      assert {:error, "Age cannot be negative"} == GuardClauses.classify_user(%User{name: "Steve", age: -1})
-      assert {:error, "Age cannot be negative"} == GuardClauses.classify_user(%User{name: "Sally", age: -50})
+      assert {:error, "Age cannot be negative"} ==
+               GuardClauses.classify_user(%User{name: "Steve", age: -1})
+
+      assert {:error, "Age cannot be negative"} ==
+               GuardClauses.classify_user(%User{name: "Sally", age: -50})
     end
   end
 
@@ -118,7 +121,10 @@ defmodule PatternMatching.GuardClausesTest do
       [timmy: timmy, grace: grace]
     end
 
-    test "when user's age is <= age cutoff, increase user's points by x amount", %{timmy: timmy, grace: grace} do
+    test "when user's age is <= age cutoff, increase user's points by x amount", %{
+      timmy: timmy,
+      grace: grace
+    } do
       # test at the boundary condition
       expected_points = timmy.points + 100
       assert %User{points: ^expected_points} = GuardClauses.award_child_points(timmy, 11, 100)

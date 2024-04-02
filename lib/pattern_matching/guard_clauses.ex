@@ -12,32 +12,30 @@ defmodule PatternMatching.GuardClauses do
   """
   alias PatternMatching.User
 
-  def return_numbers(_value) do
+  def return_numbers(value) when is_number(value), do: value
+  def return_numbers(_), do: :error
 
+  def return_lists(value) when is_list(value), do: value
+  def return_lists(_), do: :error
+
+  def return_any_size_tuples(value) when is_tuple(value), do: value
+  def return_any_size_tuples(_), do: :error
+
+  def return_maps(value) when is_map(value), do: value
+  def return_maps(_), do: :error
+
+  def run_function(value) when is_function(value), do: value.()
+  def run_function(_), do: :error
+
+  def classify_user(%User{age: nil} = _user), do: {:error, "Age missing"}
+  def classify_user(user) when user.age < 0, do: {:error, "Age cannot be negative"}
+  def classify_user(user) when user.age < 18, do: {:ok, :minor}
+  def classify_user(user) when user.age >= 18, do: {:ok, :adult}
+  def classify_user(_), do: {:error, "Not a user"}
+
+  def award_child_points(user, max_age, points) when user.age <= max_age do
+    %{user | points: user.points + points}
   end
 
-  def return_lists(_value) do
-
-  end
-
-  def return_any_size_tuples(_value) do
-
-  end
-
-  def return_maps(_value) do
-
-  end
-
-  def run_function(_value) do
-
-  end
-
-  def classify_user(_user) do
-
-  end
-
-  def award_child_points(_user, _max_age, _points) do
-
-  end
-
+  def award_child_points(user, _max_age, _points), do: user
 end

@@ -11,32 +11,24 @@ defmodule PatternMatching.Lists do
   Fix or complete the code to make the tests pass.
   """
 
-  def is_empty?(_list) do
+  def is_empty?([]), do: true
+  def is_empty?(_), do: false
 
-  end
+  def has_1_item?([_]), do: true
+  def has_1_item?(_), do: false
 
-  def has_1_item?(_list) do
+  def at_least_one?([_ | _]), do: true
+  def at_least_one?(_), do: false
 
-  end
+  def return_first_item([head | _]), do: head
+  def return_first_item(_), do: :error
 
-  def at_least_one?(_list) do
+  def starts_with_1?([1 | _]), do: true
+  def starts_with_1?(_), do: false
 
-  end
+  def sum_pair([x, y]), do: x + y
+  def sum_pair(_), do: :error
 
-  def return_first_item(_list) do
-
-  end
-
-  def starts_with_1?(_list) do
-
-  end
-
-  def sum_pair(_list) do
-
-  end
-
-  def sum_first_2(_list) do
-
-  end
-
+  def sum_first_2([x, y | z]), do: [x + y | z]
+  def sum_first_2(list), do: list
 end
