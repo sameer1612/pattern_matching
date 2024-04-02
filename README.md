@@ -36,7 +36,3 @@ Add a code line number while focusing on a specific test. `:10`
 ```
 mix test test/maps_test.exs:10
 ```
-
-```
-git checkout solutions
-```
