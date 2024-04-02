@@ -11,33 +11,16 @@ defmodule PatternMatching.Binaries do
   Fix or complete the code to make the tests pass.
   """
 
-  def identify_command(value) do
-    case value do
-      "SAY Hey guys!" -> {:say, "Hey guys!"}
-      "WAVE friend_user" -> {:wave, "friend_user"}
-      "MOCK other_person Boo!" -> {:error, "Unrecognized command"}
-    end
+  def identify_command(_value) do
+
   end
 
-  def format_phone(value) do
-    case value do
-      "8005554444" -> "(800) 555-4444"
-      "5554444" -> "555-4444"
-      "short" -> "short"
-      "original" -> "original"
-      nil -> nil
-    end
+  def format_phone(_value) do
+
   end
 
-  @png_signature <<137::size(8), 80::size(8), 78::size(8), 71::size(8), 13::size(8), 10::size(8),
-                   26::size(8), 10::size(8)>>
-  @jpg_signature <<255::size(8), 216::size(8)>>
+  def image_type(_value) do
 
-  def image_type(value) do
-    case value do
-      @png_signature <> _ -> :png
-      @jpg_signature <> _ -> :jpg
-      _ -> :unknown
-    end
   end
+
 end
