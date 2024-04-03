@@ -67,18 +67,33 @@ defmodule PatternMatching.MapsTest do
 
   describe "classify_response/1" do
     setup _ do
-      success = %{"success" => true, "token" => "syriuC2ia",
-                  "account" => %{"status_code" => "1000"},
-                  "messages" => %{"general" => %{"result_code" => 0}}}
-      throttle = %{"success" => false, "token" => nil,
-                  "account" => nil,
-                  "messages" => %{"general" => %{"result_code" => 3}}}
-      frozen = %{"success" => false, "token" => "syriuC2ia",
-                  "account" => %{"status_code" => "3001"},
-                  "messages" => %{"general" => %{"result_code" => 0}}}
-      invalid = %{"success" => false, "token" => "invalid",
-                  "account" => %{"status_code" => ""},
-                  "messages" => %{"general" => %{"result_code" => -1}}}
+      success = %{
+        "success" => true,
+        "token" => "syriuC2ia",
+        "account" => %{"status_code" => "1000"},
+        "messages" => %{"general" => %{"result_code" => 0}}
+      }
+
+      throttle = %{
+        "success" => false,
+        "token" => nil,
+        "account" => nil,
+        "messages" => %{"general" => %{"result_code" => 3}}
+      }
+
+      frozen = %{
+        "success" => false,
+        "token" => "syriuC2ia",
+        "account" => %{"status_code" => "3001"},
+        "messages" => %{"general" => %{"result_code" => 0}}
+      }
+
+      invalid = %{
+        "success" => false,
+        "token" => "invalid",
+        "account" => %{"status_code" => ""},
+        "messages" => %{"general" => %{"result_code" => -1}}
+      }
 
       {:ok, %{invalid: invalid, throttle: throttle, frozen: frozen, success: success}}
     end
